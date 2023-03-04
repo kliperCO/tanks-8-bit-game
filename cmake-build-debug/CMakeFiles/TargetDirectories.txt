@@ -1,0 +1,3 @@
+/Users/andreyefimik/CLionProjects/Tanks/cmake-build-debug/CMakeFiles/Tanks.dir
+/Users/andreyefimik/CLionProjects/Tanks/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/andreyefimik/CLionProjects/Tanks/cmake-build-debug/CMakeFiles/rebuild_cache.dir
