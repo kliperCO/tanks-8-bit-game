@@ -1,0 +1,30 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "borders-line.tsx": {
+            "scaleInDock": 4.721,
+            "scaleInEditor": 1
+        }
+    },
+    "last.imagePath": "/Users/andreyefimik/CLionProjects/Tanks/Image",
+    "map.height": 15,
+    "map.width": 20,
+    "openFiles": [
+        "borders-line.tsx"
+    ],
+    "project": "Sandbox.tiled-project",
+    "recentFiles": [
+        "borders-line.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 8,
+        "width": 48
+    }
+}

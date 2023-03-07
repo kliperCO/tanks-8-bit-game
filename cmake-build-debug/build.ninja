@@ -53,6 +53,20 @@ build CMakeFiles/Tanks.dir/main.cpp.o: CXX_COMPILER__Tanks_Debug /Users/andreyef
   OBJECT_DIR = CMakeFiles/Tanks.dir
   OBJECT_FILE_DIR = CMakeFiles/Tanks.dir
 
+build CMakeFiles/Tanks.dir/Player.cpp.o: CXX_COMPILER__Tanks_Debug /Users/andreyefimik/CLionProjects/Tanks/Player.cpp || cmake_object_order_depends_target_Tanks
+  DEP_FILE = CMakeFiles/Tanks.dir/Player.cpp.o.d
+  FLAGS = -std=c++11 -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk -mmacosx-version-min=11.7 -fcolor-diagnostics
+  INCLUDES = -isystem /usr/local/include
+  OBJECT_DIR = CMakeFiles/Tanks.dir
+  OBJECT_FILE_DIR = CMakeFiles/Tanks.dir
+
+build CMakeFiles/Tanks.dir/Tank.cpp.o: CXX_COMPILER__Tanks_Debug /Users/andreyefimik/CLionProjects/Tanks/Tank.cpp || cmake_object_order_depends_target_Tanks
+  DEP_FILE = CMakeFiles/Tanks.dir/Tank.cpp.o.d
+  FLAGS = -std=c++11 -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk -mmacosx-version-min=11.7 -fcolor-diagnostics
+  INCLUDES = -isystem /usr/local/include
+  OBJECT_DIR = CMakeFiles/Tanks.dir
+  OBJECT_FILE_DIR = CMakeFiles/Tanks.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Tanks
@@ -61,7 +75,7 @@ build CMakeFiles/Tanks.dir/main.cpp.o: CXX_COMPILER__Tanks_Debug /Users/andreyef
 #############################################
 # Link the executable Tanks
 
-build Tanks: CXX_EXECUTABLE_LINKER__Tanks_Debug CMakeFiles/Tanks.dir/main.cpp.o | /usr/local/lib/libsfml-graphics.2.5.1.dylib /usr/local/lib/libsfml-audio.2.5.1.dylib /usr/local/lib/libsfml-network.2.5.1.dylib /usr/local/lib/libsfml-window.2.5.1.dylib /usr/local/lib/libsfml-system.2.5.1.dylib
+build Tanks: CXX_EXECUTABLE_LINKER__Tanks_Debug CMakeFiles/Tanks.dir/main.cpp.o CMakeFiles/Tanks.dir/Player.cpp.o CMakeFiles/Tanks.dir/Tank.cpp.o | /usr/local/lib/libsfml-graphics.2.5.1.dylib /usr/local/lib/libsfml-audio.2.5.1.dylib /usr/local/lib/libsfml-network.2.5.1.dylib /usr/local/lib/libsfml-window.2.5.1.dylib /usr/local/lib/libsfml-system.2.5.1.dylib
   FLAGS = -std=c++11 -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk -mmacosx-version-min=11.7
   LINK_LIBRARIES = -Wl,-rpath,/usr/local/lib  /usr/local/lib/libsfml-graphics.2.5.1.dylib  /usr/local/lib/libsfml-audio.2.5.1.dylib  /usr/local/lib/libsfml-network.2.5.1.dylib  /usr/local/lib/libsfml-window.2.5.1.dylib  /usr/local/lib/libsfml-system.2.5.1.dylib
   OBJECT_DIR = CMakeFiles/Tanks.dir
