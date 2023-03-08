@@ -7,11 +7,9 @@ using namespace sf;
 
 class Enemy :public Tank{
 private:
-    float speed = 0.01;
+    float speed = 0.1;
     int delay_rot = 300;
     int delay_shoot = 100;
-    MyRect *rect;
-    int counter = 0;
 public:
     std::list<Bullet>*bullets_vector;
     std::list<Bullet>::iterator it;
@@ -20,12 +18,6 @@ public:
         srand(time(NULL));
         this->direction = getRandomDirection();
         bullets_vector = bullets;
-        std::cout << "(" << width*3 << "; " << height*3 << ")\n";
-        rect = new MyRect(x, y, x+width*3, y+height*3);
-    }
-
-    void updateRect() {
-        rect->update(x,y,x+width*3,y+height*3);
     }
 
     void update(float time){
@@ -52,27 +44,19 @@ public:
                 break;
         }
 
-        for(it=bullets_vector->begin(); it!=bullets_vector->end();it++){
-            if(rect->isColliding((*it).getRect())) {
-                std::cout << ++counter << ": ПОПАЛ!\n";
-            }
-        }
-
         if(delay_rot==0) {
             delay_rot = 300;
             direction = getRandomDirection();
         }
         if(delay_shoot==0) {
             delay_shoot = 100;
-            //bullets_vector->push_back(*new Bullet(x, y, 4, 4, direction));
+            bullets_vector->push_back(*new Bullet(x, y, 4, 4, direction));
         }
         if(delay_rot>0) delay_rot--;
         if(delay_shoot>0) delay_shoot--;
 
-//        x += dx*time;
-//        y += dy*time;
-
-        updateRect();
+        x += dx*time;
+        y += dy*time;
 
         if(x<=0) x = 1;
         if(y<=0) y = 1;

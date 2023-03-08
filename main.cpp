@@ -4,8 +4,8 @@
 #include <iostream>
 
 int main(){
-    RenderWindow window(VideoMode(640*4, 480*4), "Tanks! 8-bit Game");
-    view.reset(FloatRect(0,0,640*4,480*4));
+    RenderWindow window(VideoMode(640*2, 480*2), "Tanks! 8-bit Game");
+    view.reset(FloatRect(0,0,640*2,480*2));
 
     Image map_image;
     map_image.loadFromFile("..//Image//borders-line.png");

@@ -30,12 +30,6 @@ public:
 
         this->direction=direction;
         this->x=x+(16*3-width)/2; this->y=y+(16*3-height)/2;
-        switch(direction){
-            case Left: this->x-=16*4;
-            case Right: this->x+=16*4;
-            case Up: this->y-=16*4;
-            case Down: this->y+=16*4;
-        }
         this->width = width, this->height = height;
     }
 
@@ -67,9 +61,5 @@ public:
 
     Sprite getSprite(){
         return bullet_sprite;
-    }
-
-    MyRect *getRect() {
-        return new MyRect(x, y, x+width, y+height);
     }
 };

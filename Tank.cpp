@@ -36,7 +36,7 @@ public:
     virtual void interactionWithObstacles(){
         for(int i=y/24; i < (y+height)/24;i++){
             for(int j=x/24; j < (x+width)/24;j++) {
-                if (TileMap[i][j] == '0' || TileMap[i][j] == 'b') {
+                if (TileMap[i][j] == '0' || TileMap[i][j] == 'b' ||TileMap[i][j] == 'w'||TileMap[i][j] == 'v') {
                     if (dy > 0) {
                         y = i * 24 - height*3;
                     }
@@ -52,10 +52,6 @@ public:
                 }
             }
         }
-    }
-
-    void destroy(){
-
     }
 
     Sprite getSprite(){
