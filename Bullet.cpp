@@ -69,17 +69,7 @@ public:
         return bullet_sprite;
     }
 
-    void kill(){
-
+    MyRect *getRect() {
+        return new MyRect(x, y, x+width, y+height);
     }
-//    void destroy(std::list<Bullet>* bullets_vector){
-//        for(int i=y/8; i < (y+height)/8;i++){
-//            for(int j=x/8; j < (x+width)/8;j++) {
-//                if (TileMap[i][j] == '0' || TileMap[i][j] == 'b') {
-////                    for(int i = 0; i< bullets_vector.size())
-//
-//                }
-//            }
-//        }
-//    }
 };
