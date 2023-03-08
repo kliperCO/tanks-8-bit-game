@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
-//#include "view.h"
 #include "Player.cpp"
+#include <iostream>
+
 
 
 int main(){
@@ -17,6 +18,10 @@ int main(){
 
     Player player("Player.png", 50, 25, 16, 16);
 
+    std::list<Bullet> bullets;
+    std::list<Bullet>::iterator it;
+
+    Player player("Player.png", 50, 25, 16, 16, &bullets);
     Clock clock;
     while (window.isOpen()){
 
@@ -27,9 +32,18 @@ int main(){
         Event event;
         while (window.pollEvent(event)){
             if (event.type == Event::Closed) window.close();
+//            if(player.getShot()==true){
+//                player.setShot(false);
+////                bullets.push_back(new Bullet(player.getPlayerCoordinateX(), player.getPlayerCoordinateY(), 4, 4, player.getDirection()));
+//            }
         }
 
         player.update(time);
+
+        for(it=bullets.begin(); it!=bullets.end();it++){
+            (*it).update(time);
+        }
+
         window.setView(view);
         window.clear();
 

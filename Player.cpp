@@ -1,12 +1,21 @@
 #include <SFML/Graphics.hpp>
 #include "view.h"
 #include "Tank.cpp"
+#include "Bullet.cpp"
+#include <iostream>
+#include <vector>
+#include <list>
 
 using namespace sf;
 
 class Player : public Tank{
+private:
+    int delay = 100;
 public:
-    Player(String file, int x, int y, float width, float height) :Tank(file, x, y, width, height){}
+    std::list<Bullet>* bullets_vector;
+    Player(String file, int x, int y, float width, float height, std::list<Bullet>*bullets) :Tank(file, x, y, width, height) {
+        bullets_vector = bullets;
+    }
     void update(float time){
         switch (direction){
             case Tank::Right: dx = speed; dy = 0;
@@ -22,11 +31,13 @@ public:
         x += dx*time;
         y += dy*time;
 
+        if(x<=0) x = 1;
+        if(y<=0) y = 1;
+
         speed = 0;
         sprite.setPosition(x, y);
 
         interactionWithObstacles();
-
         control();
         getPlayerCoordinateForView(getPlayerCoordinateX(),getPlayerCoordinateY());
     }
@@ -56,25 +67,10 @@ public:
             if(current_frame >= 2) current_frame = 0;
             sprite.setTextureRect(IntRect( 16*(int)current_frame, 32, 16, 16));
         }
-    }
-
-    void interactionWithObstacles(){
-        for(int i=y/8; i < (y+height)/8;i++){
-            for(int j=x/8; j < (x+width)/8;j++) {
-                if (TileMap[i][j] == '0' || TileMap[i][j] == 'b') {
-                    if (dy > 0) {
-                        y = i * 8 - height;
-                    }
-                    if (dy < 0) {
-                        y = i * 8 + 8;
-                    }
-                    if (dx > 0) {
-                        x = j * 8 - width;
-                    }
-                    if (dx < 0) {
-                        x = j * 8 + 8;
-                    }
-                }
+        if(Keyboard::isKeyPressed(Keyboard::Space)){
+            if(delay==0) {
+                delay = 100;
+                bullets_vector->push_back(*new Bullet(getPlayerCoordinateX(), getPlayerCoordinateY(), 4, 4, direction));
             }
         }
     }
@@ -85,4 +81,10 @@ public:
     float getPlayerCoordinateY(){
         return y;
     }
+//    bool getShot(){
+//        return shot;
+//    }
+//    bool setShot(bool shot){
+//        this->shot=shot;
+//    }
 };

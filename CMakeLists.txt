@@ -3,7 +3,7 @@ project(Tanks)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES main.cpp sandbox.h view.h Player.cpp Tank.cpp)
+set(SOURCE_FILES main.cpp sandbox.h view.h Player.cpp Tank.cpp Enemy.cpp Bullet.cpp Texture.h)
 add_executable(Tanks ${SOURCE_FILES})
 include_directories(/usr/local/include)
 
