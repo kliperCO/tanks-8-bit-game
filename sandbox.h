@@ -1,7 +1,9 @@
 #include <SFML/Graphics.hpp>
+#ifndef SOME_STRING_H
+#define SOME_STRING_H
 
-const int HEIGHT_MAP = 25;
-const int WIDHT_MAP = 40;
+static const int HEIGHT_MAP = 28;
+static const int WIDHT_MAP = 40;
 
 static sf::String TileMap[HEIGHT_MAP]={
         "0000000000000000000000000000000000000000",
@@ -28,6 +30,37 @@ static sf::String TileMap[HEIGHT_MAP]={
         "0                                      0",
         "0                                      0",
         "0                                      0",
+        "0                                      0",
+        "0                                      0",
+        "0                                      0",
         "0000000000000000000000000000000000000000",
 
 };
+
+struct MyRect{
+public:
+    int x1, y1, x2,y2;
+    MyRect(int x1, int y1, int x2, int y2) {
+        this->x1 = x1;
+        this->x1 = y1;
+        this->y2 = x2;
+        this->y2 = y2;
+    }
+    void update(int x1, int y1, int x2, int y2) {
+        this->x1 = x1;
+        this->x1 = y1;
+        this->y2 = x2;
+        this->y2 = y2;
+    }
+    bool isColliding(MyRect* bullet){
+        if (x2 >= bullet->x1 &&
+            x1 <= bullet->x2 &&
+            y2 >= bullet->y1 &&
+            y1 <= bullet->y2) {
+            return true;
+        }
+        return false;
+    }
+
+};
+#endif

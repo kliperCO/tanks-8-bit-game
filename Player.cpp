@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "view.h"
 #include "Tank.cpp"
-#include "Bullet.cpp"
 #include <iostream>
 #include <vector>
 #include <list>
@@ -13,9 +13,11 @@ private:
     int delay = 100;
 public:
     std::list<Bullet>* bullets_vector;
+
     Player(String file, int x, int y, float width, float height, std::list<Bullet>*bullets) :Tank(file, x, y, width, height) {
         bullets_vector = bullets;
     }
+
     void update(float time){
         switch (direction){
             case Tank::Right: dx = speed; dy = 0;
@@ -79,13 +81,8 @@ public:
     float getPlayerCoordinateX(){
         return x;
     }
+
     float getPlayerCoordinateY(){
         return y;
     }
-//    bool getShot(){
-//        return shot;
-//    }
-//    bool setShot(bool shot){
-//        this->shot=shot;
-//    }
 };
