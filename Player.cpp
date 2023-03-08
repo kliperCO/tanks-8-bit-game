@@ -73,6 +73,7 @@ public:
                 bullets_vector->push_back(*new Bullet(getPlayerCoordinateX(), getPlayerCoordinateY(), 4, 4, direction));
             }
         }
+        if(delay>0) delay--;
     }
 
     float getPlayerCoordinateX(){

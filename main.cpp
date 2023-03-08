@@ -16,7 +16,6 @@ int main(){
     Sprite map_sprite;
     map_sprite.setTexture(map_texture);
 
-    Player player("Player.png", 50, 25, 16, 16);
 
     std::list<Bullet> bullets;
     std::list<Bullet>::iterator it;
@@ -59,7 +58,9 @@ int main(){
 
             window.draw(map_sprite);
         }
-
+        for(it=bullets.begin(); it!=bullets.end();it++){
+            window.draw((*it).getSprite());
+        }
         window.draw(player.getSprite());
         window.display();
     }
