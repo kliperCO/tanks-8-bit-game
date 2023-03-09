@@ -1,4 +1,5 @@
 #pragma once
+
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <vector>
@@ -7,59 +8,88 @@
 
 using namespace sf;
 
-class Bullet{
+class Bullet {
 private:
-    enum Direction{Left, Right, Up, Down};
+    enum Direction {
+        Left, Right, Up, Down
+    };
     int direction;
-    float speed = 0.8;
+    float speed = 0.5;
     float x, y, dx, dy, width, height;
 
     Image bullet_image;
     Texture bullet_texture;
     Sprite bullet_sprite;
 public:
-    bool isAlive=true;
+    bool isAlive = true;
 
-    Bullet(int x, int y, float width, float height, int direction){
+    Bullet(int x, int y, float width, float height, int direction) {
         bullet_image.loadFromFile("..//Image//bullet_4.png");
         bullet_texture.loadFromImage(bullet_image);
 
         bullet_sprite.setTexture(bullet_texture);
-        bullet_sprite.scale(1,1);
-        bullet_sprite.setTextureRect(IntRect(0,0,width,height));
+        bullet_sprite.scale(1, 1);
+        bullet_sprite.setTextureRect(IntRect(0, 0, width, height));
 
-        this->direction=direction;
-        this->x=x+(16*3-width)/2; this->y=y+(16*3-height)/2;
-        this->width = width, this->height = height;
-    }
+        this->direction = direction;
+        this->x = x + (48 - width) / 2;
+        this->y = y + (48 - height) / 2;
 
-    void update(float time){
-        switch (direction){
-            case Right: dx = speed; dy = 0;
+        switch (direction) {
+            case Left:
+                this->x -= 32;
                 break;
-            case Left: dx = -speed; dy = 0;
+            case Right:
+                this->x += 32;
                 break;
-            case Down: dx = 0; dy = speed;
+            case Up:
+                this->y -= 32;
                 break;
-            case Up: dx = 0; dy = -speed;
+            case Down:
+                this->y += 32;
                 break;
         }
 
-        x += dx*time;
-        y += dy*time;
+        this->width = width, this->height = height;
+    }
 
-        if(x<=0 || y<=0 || x > 40*24 ||y > 28*24) isAlive=false;
+    void update(float time) {
+        switch (direction) {
+            case Right:
+                dx = speed;
+                dy = 0;
+                break;
+            case Left:
+                dx = -speed;
+                dy = 0;
+                break;
+            case Down:
+                dx = 0;
+                dy = speed;
+                break;
+            case Up:
+                dx = 0;
+                dy = -speed;
+                break;
+        }
 
-        bullet_sprite.setPosition(x,y);
+        x += dx * time;
+        y += dy * time;
 
-        for(int i=y/24; i < (y+height)/24;i++){
-            for(int j=x/24; j < (x+width)/24;j++) {
-                if (TileMap[i][j] == 'b')isAlive=false;
+        bullet_sprite.setPosition(x, y);
+
+        for (int i = y / 24; i < (y + height) / 24; i++) {
+            for (int j = x / 24; j < (x + width) / 24; j++) {
+                if (TileMap[i][j] == '0' || TileMap[i][j] == 'b') isAlive = false;
             }
         }
     }
 
-    Sprite getSprite(){
+    Sprite getSprite() {
         return bullet_sprite;
+    }
+
+    MyRect *getRect() {
+        return new MyRect(x, y, x + width, y + height);
     }
 };

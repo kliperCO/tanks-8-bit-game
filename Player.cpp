@@ -44,7 +44,7 @@ public:
     }
 
     void control(){
-        if(Keyboard::isKeyPressed(Keyboard::Left) || Keyboard::isKeyPressed(Keyboard::A)){
+        if(Keyboard::isKeyPressed(Keyboard::Left)){
             direction=Left; speed = 0.1;
             current_frame += 1;
             if(current_frame >= 2) current_frame = 0;
