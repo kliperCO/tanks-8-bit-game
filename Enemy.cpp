@@ -10,6 +10,7 @@ private:
     float speed = 0.1;
     int delay_rot = 300;
     int delay_shoot = 100;
+    MyRect *rect;
 public:
     std::list<Bullet>*bullets_vector;
     std::list<Bullet>::iterator it;
@@ -18,8 +19,11 @@ public:
         srand(time(NULL));
         this->direction = getRandomDirection();
         bullets_vector = bullets;
+        rect = new MyRect(x, y, x+width*3, y+height*3);
     }
-
+    void updateRect() {
+        rect->update(x,y,x+width*3,y+height*3);
+    }
     void update(float time){
         switch (direction){
             case Tank::Right: dx = speed; dy = 0;
@@ -43,7 +47,11 @@ public:
                 sprite.setTextureRect(IntRect( 16*(int)current_frame, 0, 16, 16));
                 break;
         }
-
+        for(it=bullets_vector->begin(); it!=bullets_vector->end();it++){
+            if(rect->isColliding((*it).getRect())) {
+                is_alive = false;
+            }
+        }
         if(delay_rot==0) {
             delay_rot = 300;
             direction = getRandomDirection();
@@ -52,11 +60,14 @@ public:
             delay_shoot = 100;
             bullets_vector->push_back(*new Bullet(x, y, 4, 4, direction));
         }
+
         if(delay_rot>0) delay_rot--;
         if(delay_shoot>0) delay_shoot--;
 
         x += dx*time;
         y += dy*time;
+
+        updateRect();
 
         if(x<=0) x = 1;
         if(y<=0) y = 1;
@@ -67,7 +78,7 @@ public:
     void interactionWithObstacles(){
         for(int i=y/24; i < (y+height)/24;i++){
             for(int j=x/24; j < (x+width)/24;j++) {
-                if (TileMap[i][j] == '0' || TileMap[i][j] == 'b') {
+                if (TileMap[i][j] == '0' || TileMap[i][j] == 'b' ||TileMap[i][j] == 'w'||TileMap[i][j] == 'v') {
                     if (dy > 0) {
                         y = i * 24 - height*3;
                         direction = getRandomDirection();

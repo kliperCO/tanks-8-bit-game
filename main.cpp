@@ -3,6 +3,9 @@
 #include "Enemy.cpp"
 #include <iostream>
 
+int getRandomIntBetween(int min, int max){
+    return rand() % (max - min + 1) + min;
+}
 int main(){
     RenderWindow window(VideoMode(640*2, 480*2), "Tanks! 8-bit Game");
     view.reset(FloatRect(0,0,640*2,480*2));
@@ -35,8 +38,8 @@ int main(){
         }
 
         player.update(time);
-        if(enemies.empty()){
-            enemies.push_back(*new Enemy("Enemy.png", 500, 100, 16, 16, &bullets));
+        if(enemies.size()<5){
+            enemies.push_back(*new Enemy("Enemy.png", getRandomIntBetween(150,500), getRandomIntBetween(150,400), 16, 16, &bullets));
         }
 
         for(it=bullets.begin(); it!=bullets.end();it++){
@@ -46,7 +49,9 @@ int main(){
 
         for(it_enemy=enemies.begin(); it_enemy!=enemies.end();it_enemy++){
             if((*it_enemy).isAlive())(*it_enemy).update(time);
-            else enemies.erase(it_enemy++);
+            else{
+                enemies.erase(it_enemy++);
+            }
         }
 
         window.setView(view);

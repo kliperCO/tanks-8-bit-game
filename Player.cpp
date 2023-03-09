@@ -16,6 +16,9 @@ public:
 
     Player(String file, int x, int y, float width, float height, std::list<Bullet>*bullets) :Tank(file, x, y, width, height) {
         bullets_vector = bullets;
+        speed = 0.1;
+        dx = 0;
+        dy = 0;
     }
 
     void update(float time){
@@ -29,12 +32,8 @@ public:
             case Tank::Up: dx = 0; dy = -speed;
                 break;
         }
-
         x += dx*time;
         y += dy*time;
-
-        if(x<=0) x = 1;
-        if(y<=0) y = 1;
 
         speed = 0;
         sprite.setPosition(x, y);
@@ -72,7 +71,7 @@ public:
         if(Keyboard::isKeyPressed(Keyboard::Space)){
             if(delay==0) {
                 delay = 100;
-                bullets_vector->push_back(*new Bullet(getPlayerCoordinateX(), getPlayerCoordinateY(), 4, 4, direction));
+                bullets_vector->push_back(*new Bullet(x, y, 4, 4, direction));
             }
         }
         if(delay>0) delay--;

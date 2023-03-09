@@ -36,4 +36,29 @@ static sf::String TileMap[HEIGHT_MAP]={
         "0000000000000000000000000000000000000000",
 
 };
+
+
+struct MyRect{
+public:
+    int x1, y1, x2, y2;
+
+    MyRect(int x1, int y1, int x2, int y2) {
+        this->x1 = x1;
+        this->y1 = y1;
+        this->x2 = x2;
+        this->y2 = y2;
+    }
+
+    void update(int x1, int y1, int x2, int y2) {
+        this->x1 = x1;
+        this->y1 = y1;
+        this->x2 = x2;
+        this->y2 = y2;
+    }
+
+    bool isColliding(MyRect* bullet){
+        if(x1 < bullet->x2 && x2 > bullet->x1 && y1 < bullet->y2 && y2 > bullet->y1) return true;
+        return false;
+    }
+};
 #endif
