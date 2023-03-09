@@ -56,10 +56,6 @@ public:
             delay_rot = 300;
             direction = getRandomDirection();
         }
-        if(delay_shoot==0) {
-            delay_shoot = 100;
-            bullets_vector->push_back(*new Bullet(x, y, 4, 4, direction));
-        }
 
         if(delay_rot>0) delay_rot--;
         if(delay_shoot>0) delay_shoot--;
@@ -71,6 +67,11 @@ public:
 
         if(x<=0) x = 1;
         if(y<=0) y = 1;
+
+        if(delay_shoot==0) {
+            delay_shoot = 100;
+            bullets_vector->push_back(*new Bullet(x, y, 4, 4, direction));
+        }
 
         sprite.setPosition(x, y);
         interactionWithObstacles();

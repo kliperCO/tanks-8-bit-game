@@ -6,7 +6,7 @@
 int getRandomIntBetween(int min, int max){
     return rand() % (max - min + 1) + min;
 }
-int main(){
+ int main(){
     RenderWindow window(VideoMode(640*2, 480*2), "Tanks! 8-bit Game");
     view.reset(FloatRect(0,0,640*2,480*2));
 
